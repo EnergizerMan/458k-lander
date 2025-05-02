@@ -17,10 +17,10 @@ const OptInForm = () => {
     setIsLoading(true);
     
     try {
-      // Store user data in Supabase
+      // Store user data in Supabase maria_leads table
       const { error } = await supabase
-        .from('leads')
-        .insert([{ first_name: firstName, email, source: 'playbook_optin' }]);
+        .from('maria_leads')
+        .insert({ first_name: firstName, email, source: 'playbook_optin' });
       
       if (error) throw error;
       

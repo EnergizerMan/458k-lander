@@ -809,6 +809,45 @@ export type Database = {
           },
         ]
       }
+      maria_leads: {
+        Row: {
+          booked_strategy_call: boolean | null
+          challenge: string | null
+          company_name: string | null
+          created_at: string | null
+          current_revenue: string | null
+          email: string
+          first_name: string | null
+          id: string
+          source: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          booked_strategy_call?: boolean | null
+          challenge?: string | null
+          company_name?: string | null
+          created_at?: string | null
+          current_revenue?: string | null
+          email: string
+          first_name?: string | null
+          id?: string
+          source?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          booked_strategy_call?: boolean | null
+          challenge?: string | null
+          company_name?: string | null
+          created_at?: string | null
+          current_revenue?: string | null
+          email?: string
+          first_name?: string | null
+          id?: string
+          source?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       messages: {
         Row: {
           body_html: string | null

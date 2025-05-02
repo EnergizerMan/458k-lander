@@ -61,7 +61,7 @@ const StrategyCall = () => {
     try {
       // Update lead in database with additional info
       const { error } = await supabase
-        .from('leads')
+        .from('maria_leads')
         .update({
           company_name: formData.companyName,
           current_revenue: formData.currentRevenue,
