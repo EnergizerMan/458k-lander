@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -51,45 +52,6 @@ const StrategyCall = () => {
     setFormData(prev => ({ ...prev, agreeToTerms: checked }));
   };
 
-  // Function to send data to GoHighLevel
-  const sendToGoHighLevel = async (data) => {
-    try {
-      // Replace with your GoHighLevel webhook URL
-      const ghlWebhookUrl = process.env.GOHIGHLEVEL_WEBHOOK_URL || "https://api.gohighlevel.com/webhook/v1/YOUR_WEBHOOK_ID";
-      
-      // Format the data according to GoHighLevel's expected structure
-      const ghlData = {
-        firstName: data.firstName,
-        email: data.email,
-        phone: data.phone,
-        website: data.website,
-        customField: {
-          budget: data.budget,
-          timeline: data.timeline,
-          challenge: data.reason
-        },
-        tags: ["Strategy Call Request"]
-      };
-      
-      // Send data to GoHighLevel
-      const response = await fetch(ghlWebhookUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(ghlData)
-      });
-      
-      if (!response.ok) {
-        console.error('Failed to send data to GoHighLevel:', await response.text());
-      } else {
-        console.log('Successfully sent data to GoHighLevel');
-      }
-    } catch (error) {
-      console.error('Error sending data to GoHighLevel:', error);
-    }
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -113,15 +75,11 @@ const StrategyCall = () => {
           website: formData.website,
           current_revenue: formData.budget,
           challenge: formData.reason,
-          timeline: formData.timeline,
           booked_strategy_call: true
         })
         .eq('email', formData.email);
       
       if (error) throw error;
-      
-      // Send data to GoHighLevel
-      await sendToGoHighLevel(formData);
       
       // Success! Show success modal
       setShowSuccess(true);
@@ -159,7 +117,7 @@ const StrategyCall = () => {
                 <CalendarPlus className="h-6 w-6 text-navy" />
               </div>
               <div>
-                <h3 className="font-bold text-lg">30-Minute Zoom Call</h3>
+                <h3 className="font-bold text-lg">30-Minute Meet Call</h3>
                 <p className="text-gray-700">We'll analyze your current GTM strategy and identify key opportunities for immediate pipeline growth.</p>
               </div>
             </div>
