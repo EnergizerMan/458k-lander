@@ -6,9 +6,9 @@ const PlaybookMockup = () => {
     <div className="relative w-full max-w-md mx-auto">
       <div className="animate-float">
         <img 
-          src="https://storage.googleapis.com/msgsndr/4TEIidTDmdpcoDQBkEw6/media/6814d828573cb74700054ecd.svg" 
+          src="/lovable-uploads/0daf878d-47a7-44de-967a-b20c84509984.png" 
           alt="458K GTM Playbook" 
-          className="w-full h-auto"
+          className="w-full h-auto shadow-lg"
         />
       </div>
     </div>
