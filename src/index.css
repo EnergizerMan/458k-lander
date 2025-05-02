@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -49,6 +52,10 @@
     --sidebar-border: 220 13% 91%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    /* Custom colors */
+    --navy: 218 38% 11%;
+    --cta: 25 95% 53%;
   }
 
   .dark {
@@ -87,6 +94,10 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    /* Custom colors */
+    --navy: 218 38% 11%;
+    --cta: 25 95% 53%;
   }
 }
 
@@ -96,6 +107,38 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-poppins;
   }
+}
+
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.bg-navy {
+  background-color: hsl(var(--navy));
+}
+
+.bg-cta {
+  background-color: hsl(var(--cta));
+}
+
+.text-cta {
+  color: hsl(var(--cta));
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
