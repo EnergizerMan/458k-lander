@@ -6,7 +6,7 @@ const PlaybookMockup = () => {
     <div className="relative w-full max-w-md mx-auto">
       <div className="animate-float">
         <img 
-          src="/lovable-uploads/5aae3358-7cfd-4e36-8b99-f7051d96e721.png" 
+          src="/lovable-uploads/cb21d6ca-3d7e-449d-b051-ddd45703aad5.png" 
           alt="SaaS Pipeline Secrets" 
           className="w-1/2 h-auto mx-auto shadow-lg rounded-md"
         />
