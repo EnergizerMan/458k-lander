@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -53,9 +52,9 @@
 
     --sidebar-ring: 217.2 91.2% 59.8%;
     
-    /* Custom colors */
+    /* Custom colors - Updated to blue */
     --navy: 218 38% 11%;
-    --cta: 25 95% 53%;
+    --cta: 210 100% 50%; /* Changed from orange to blue */
   }
 
   .dark {

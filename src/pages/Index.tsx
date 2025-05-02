@@ -50,7 +50,7 @@ const Index = () => {
       {/* Video Section */}
       <section className="py-12 px-4 md:px-8 bg-gray-50">
         <div className="max-w-6xl mx-auto">
-          <VideoEmbed videoId="dQw4w9WgXcQ" title="$458K GTM Playbook Video" />
+          <VideoEmbed videoId="kOkQ4T5WO9E" title="Smooth Operator" />
         </div>
       </section>
 
@@ -89,7 +89,7 @@ const Index = () => {
       <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white p-4 shadow-lg border-t border-gray-200">
         <button 
           onClick={scrollToForm}
-          className="w-full bg-cta hover:bg-amber-500 text-white font-bold py-3 px-4 rounded-md shadow-md"
+          className="w-full bg-cta hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-md shadow-md"
         >
           📥 Get Your Free Playbook
         </button>

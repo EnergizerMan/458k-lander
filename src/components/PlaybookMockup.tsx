@@ -4,8 +4,8 @@ import React from 'react';
 const PlaybookMockup = () => {
   return (
     <div className="relative w-full max-w-md mx-auto animate-float">
-      <div className="absolute inset-0 bg-gradient-to-br from-amber-500/20 to-orange-600/20 transform rotate-3 rounded-lg shadow-xl"></div>
-      <div className="relative bg-gradient-to-br from-orange-500 to-amber-600 text-white p-6 rounded-lg shadow-2xl transform -rotate-3">
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-indigo-600/20 transform rotate-3 rounded-lg shadow-xl"></div>
+      <div className="relative bg-gradient-to-br from-blue-500 to-indigo-600 text-white p-6 rounded-lg shadow-2xl transform -rotate-3">
         <div className="border-2 border-white border-opacity-30 p-4 rounded">
           <h3 className="text-xl font-bold mb-1">$458K in 30 Days</h3>
           <h4 className="text-lg font-medium mb-4">The AI GTM Playbook</h4>
