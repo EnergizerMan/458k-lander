@@ -18,7 +18,7 @@ const AboutCreator = () => {
       <div className="flex flex-col md:flex-row md:items-center gap-6">
         <div className="md:w-1/4 flex justify-center">
           <Avatar className="w-32 h-32 border-4 border-white shadow-lg">
-            <AvatarImage src="/lovable-uploads/6b8c5b41-7141-4c87-8fbe-05b56fd501c8.png" alt="Jacob Vandersteen" />
+            <AvatarImage src="/lovable-uploads/04c0453e-277f-4d88-92bb-23aa121cb240.png" alt="Jacob Vandersteen" />
             <AvatarFallback className="w-32 h-32 rounded-full bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center text-white text-4xl font-bold">
               JV
             </AvatarFallback>
