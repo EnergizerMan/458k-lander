@@ -5,19 +5,23 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
 import { toast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { CalendarPlus, Mail } from "lucide-react";
+import { CalendarPlus, Mail, Link, Phone } from "lucide-react";
 
 const StrategyCall = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: '',
     email: '',
-    companyName: '',
-    currentRevenue: '',
-    challenge: '',
+    phone: '',
+    website: '',
+    budget: '',
+    timeline: '',
+    reason: '',
     agreeToTerms: false
   });
   const [isLoading, setIsLoading] = useState(false);
@@ -38,6 +42,10 @@ const StrategyCall = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleRadioChange = (value: string, fieldName: string) => {
+    setFormData(prev => ({ ...prev, [fieldName]: value }));
   };
 
   const handleCheckboxChange = (checked: boolean) => {
@@ -63,9 +71,10 @@ const StrategyCall = () => {
       const { error } = await supabase
         .from('maria_leads')
         .update({
-          company_name: formData.companyName,
-          current_revenue: formData.currentRevenue,
-          challenge: formData.challenge,
+          phone: formData.phone,
+          website: formData.website,
+          current_revenue: formData.budget,
+          challenge: formData.reason,
           booked_strategy_call: true
         })
         .eq('email', formData.email);
@@ -124,69 +133,142 @@ const StrategyCall = () => {
             </div>
           </div>
           
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium mb-1">First Name</label>
-                <Input
-                  name="firstName"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  required
-                  readOnly
-                  className="w-full bg-gray-100"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-1">Email</label>
-                <Input
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  readOnly
-                  className="w-full bg-gray-100"
-                />
-              </div>
-            </div>
-            
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Name Field */}
             <div>
-              <label className="block text-sm font-medium mb-1">Company Name</label>
+              <Label htmlFor="firstName" className="block text-sm font-medium mb-1">Name</Label>
               <Input
-                name="companyName"
-                value={formData.companyName}
+                id="firstName"
+                name="firstName"
+                value={formData.firstName}
                 onChange={handleChange}
                 required
-                className="w-full"
-                placeholder="Your Company Name"
+                readOnly
+                className="w-full bg-gray-100"
+                placeholder="Full Name"
               />
             </div>
             
+            {/* Work Email Field */}
             <div>
-              <label className="block text-sm font-medium mb-1">Current Annual Revenue</label>
+              <Label htmlFor="email" className="block text-sm font-medium mb-1">Work Email *</Label>
               <Input
-                name="currentRevenue"
-                value={formData.currentRevenue}
+                id="email"
+                name="email"
+                type="email"
+                value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full"
-                placeholder="e.g., $1M - $5M"
+                readOnly
+                className="w-full bg-gray-100"
+                placeholder="Email"
               />
             </div>
             
+            {/* Mobile Number Field */}
             <div>
-              <label className="block text-sm font-medium mb-1">Biggest GTM Challenge Right Now</label>
+              <Label htmlFor="phone" className="block text-sm font-medium mb-1">Mobile number *</Label>
+              <div className="relative">
+                <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-4 w-4" />
+                <Input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                  className="w-full pl-10"
+                  placeholder="Phone"
+                />
+              </div>
+            </div>
+            
+            {/* Website Field */}
+            <div>
+              <Label htmlFor="website" className="block text-sm font-medium mb-1">Website</Label>
+              <div className="relative">
+                <Link className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-4 w-4" />
+                <Input
+                  id="website"
+                  name="website"
+                  type="url"
+                  value={formData.website}
+                  onChange={handleChange}
+                  className="w-full pl-10"
+                  placeholder="Web URL goes here"
+                />
+              </div>
+            </div>
+            
+            {/* Budget Field */}
+            <div>
+              <Label className="block text-sm font-medium mb-3">What is your monthly budget for working with us</Label>
+              <RadioGroup 
+                value={formData.budget} 
+                onValueChange={(value) => handleRadioChange(value, 'budget')}
+                className="space-y-3"
+                required
+              >
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="Less than $6,000" id="budget-1" />
+                  <Label htmlFor="budget-1">Less than $6,000</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="$6,000 to $20,000" id="budget-2" />
+                  <Label htmlFor="budget-2">$6,000 to $20,000</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="$20,000 to $50,000" id="budget-3" />
+                  <Label htmlFor="budget-3">$20,000 to $50,000</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="$50,000+" id="budget-4" />
+                  <Label htmlFor="budget-4">$50,000+</Label>
+                </div>
+              </RadioGroup>
+            </div>
+            
+            {/* Timeline Field */}
+            <div>
+              <Label className="block text-sm font-medium mb-3">When are you hoping to kickoff? (We are usually booked 4-6 weeks)</Label>
+              <RadioGroup 
+                value={formData.timeline} 
+                onValueChange={(value) => handleRadioChange(value, 'timeline')}
+                className="space-y-3"
+                required
+              >
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="Want to move as quickly as possible" id="timeline-1" />
+                  <Label htmlFor="timeline-1">Want to move as quickly as possible</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="Over next 4-6 weeks" id="timeline-2" />
+                  <Label htmlFor="timeline-2">Over next 4-6 weeks</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="Early in the process, not too urgent" id="timeline-3" />
+                  <Label htmlFor="timeline-3">Early in the process, not too urgent</Label>
+                </div>
+              </RadioGroup>
+            </div>
+            
+            {/* Reason Field */}
+            <div>
+              <Label htmlFor="reason" className="block text-sm font-medium mb-1">
+                A few lines explaining why you reached out will help us understand how we can best help
+              </Label>
               <Textarea
-                name="challenge"
-                value={formData.challenge}
+                id="reason"
+                name="reason"
+                value={formData.reason}
                 onChange={handleChange}
                 required
-                className="w-full min-h-[100px]"
-                placeholder="What's your biggest challenge with generating qualified pipeline?"
+                className="w-full min-h-[120px]"
+                placeholder="Tell us about your current challenges and goals..."
               />
             </div>
             
+            {/* Terms Checkbox */}
             <div className="flex items-start space-x-2 pt-2">
               <Checkbox 
                 id="terms" 
@@ -198,6 +280,7 @@ const StrategyCall = () => {
               </label>
             </div>
             
+            {/* Submit Button */}
             <Button 
               type="submit" 
               disabled={isLoading}
@@ -213,6 +296,7 @@ const StrategyCall = () => {
         </div>
       </div>
       
+      {/* Success Dialog */}
       <Dialog open={showSuccess} onOpenChange={setShowSuccess}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
