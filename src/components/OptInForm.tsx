@@ -1,34 +1,52 @@
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const OptInForm = () => {
   const [firstName, setFirstName] = useState('');
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate submission
-    setTimeout(() => {
-      setIsLoading(false);
+    try {
+      // Store user data in Supabase
+      const { error } = await supabase
+        .from('leads')
+        .insert([{ first_name: firstName, email, source: 'playbook_optin' }]);
+      
+      if (error) throw error;
+      
       // Show success message
       toast({
         title: "Success!",
         description: "Your playbook is on its way to your inbox!",
       });
       
-      // Reset form
-      setFirstName('');
-      setEmail('');
+      // Store form data in localStorage for use on next page
+      localStorage.setItem('leadData', JSON.stringify({ firstName, email }));
       
-      // In a real implementation, you would redirect to Page 2
-      // window.location.href = "/strategy-call";
-    }, 1500);
+      // Redirect to strategy call page
+      setTimeout(() => {
+        navigate('/strategy-call');
+      }, 1500);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: "Something went wrong",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
