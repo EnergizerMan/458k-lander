@@ -1,9 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle2, Clock, Calendar, FileText, Video } from "lucide-react";
+import { CheckCircle2, Clock, Calendar, FileText, Video, Play } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 import VideoEmbed from "@/components/VideoEmbed";
 import { supabase } from "@/integrations/supabase/client";
@@ -66,6 +65,14 @@ const SuccessPage = () => {
     }
   };
 
+  const scrollToOTO = () => {
+    // Scroll to the OTO section
+    const otoSection = document.getElementById('oto-section');
+    if (otoSection) {
+      otoSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4">
       <div className="max-w-5xl mx-auto">
@@ -124,15 +131,46 @@ const SuccessPage = () => {
           </Card>
         </div>
         
-        {/* Video Section */}
+        {/* Enhanced Video Section */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-center">Watch While You Wait</h2>
-          <VideoEmbed videoId="Yh12Udz8lwc" title="Our Approach to Pipeline Generation" />
+          <div className="bg-white p-6 rounded-xl shadow-md">
+            <div className="text-center mb-6">
+              <h2 className="text-2xl font-bold">Watch While You Wait</h2>
+              <p className="text-gray-600 mt-2 max-w-2xl mx-auto">
+                Get a head start on growing your pipeline with this exclusive training video. 
+                Learn the framework we'll customize during our strategy call.
+              </p>
+            </div>
+            
+            <VideoEmbed 
+              videoId="Yh12Udz8lwc" 
+              title="Elite Pipeline Generation Framework" 
+              description="This video shows you the exact framework we'll be customizing for your business during our strategy call. Want the complete system right away? Check out our Elite Sales Playbook offer below."
+              ctaText="Get the full playbook and training now"
+              onCTAClick={scrollToOTO}
+            />
+            
+            <div className="mt-6 bg-blue-50 p-4 rounded-lg">
+              <div className="flex items-start">
+                <Play className="h-6 w-6 text-navy mr-3 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="font-bold">Video Highlights:</h3>
+                  <ul className="mt-2 space-y-1 text-sm">
+                    <li>• How we generated $458k in qualified pipeline in 30 days</li>
+                    <li>• The 3-part outreach sequence that gets responses</li>
+                    <li>• Common mistakes that kill your pipeline generation efforts</li>
+                    <li>• How to identify and target your ideal customers</li>
+                    <li>• Preview of the full Elite Sales Playbook (available below)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* OTO Section */}
         {!purchaseCompleted ? (
-          <Card className="border-2 border-cta mb-8">
+          <Card className="border-2 border-cta mb-8" id="oto-section">
             <CardHeader className="bg-cta text-white">
               <div className="flex items-center justify-between">
                 <div>
