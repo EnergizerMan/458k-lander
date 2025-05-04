@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { CalendarPlus, Mail, Link, Phone } from "lucide-react";
+import Navigation from '@/components/Navigation';
 
 const StrategyCall = () => {
   const navigate = useNavigate();
@@ -94,8 +95,9 @@ const StrategyCall = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-12 pb-20 px-4">
-      <div className="max-w-3xl mx-auto">
+    <div className="min-h-screen bg-gray-50 pt-0 pb-20 px-4">
+      <Navigation />
+      <div className="max-w-3xl mx-auto pt-12">
         <div className="mb-8 text-center">
           <h1 className="text-3xl md:text-4xl font-bold text-navy mb-4">
             Book Your Free GTM Strategy Session

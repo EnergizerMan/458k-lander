@@ -1,6 +1,5 @@
 
 import React, { useRef } from 'react';
-import { Link } from 'react-router-dom';
 import OptInForm from '@/components/OptInForm';
 import VideoEmbed from '@/components/VideoEmbed';
 import PlaybookMockup from '@/components/PlaybookMockup';
@@ -9,6 +8,7 @@ import CaseStudy from '@/components/CaseStudy';
 import AboutCreator from '@/components/AboutCreator';
 import FinalCTA from '@/components/FinalCTA';
 import { Toaster } from '@/components/ui/sonner';
+import Navigation from '@/components/Navigation';
 
 const Index = () => {
   const formRef = useRef<HTMLDivElement>(null);
@@ -24,26 +24,7 @@ const Index = () => {
       <Toaster />
       
       {/* Navigation */}
-      <nav className="bg-white shadow-sm py-2">
-        <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
-          <div className="font-bold text-navy">MariaGTM</div>
-          <Link 
-            to="/strategy-call" 
-            className="text-sm text-navy underline hover:text-blue-700"
-            onClick={() => {
-              // Store dummy data if not coming from form
-              if (!localStorage.getItem('leadData')) {
-                localStorage.setItem('leadData', JSON.stringify({
-                  firstName: 'Demo',
-                  email: 'demo@example.com'
-                }));
-              }
-            }}
-          >
-            Go to Strategy Call Page
-          </Link>
-        </div>
-      </nav>
+      <Navigation />
       
       {/* Hero Section */}
       <section className="pt-12 pb-8 px-4 md:px-8 bg-white">
