@@ -8,7 +8,6 @@ import CaseStudy from '@/components/CaseStudy';
 import AboutCreator from '@/components/AboutCreator';
 import FinalCTA from '@/components/FinalCTA';
 import { Toaster } from '@/components/ui/sonner';
-import Navigation from '@/components/Navigation';
 
 const Index = () => {
   const formRef = useRef<HTMLDivElement>(null);
@@ -22,9 +21,6 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gray-50 font-poppins">
       <Toaster />
-      
-      {/* Navigation */}
-      <Navigation />
       
       {/* Hero Section */}
       <section className="pt-12 pb-8 px-4 md:px-8 bg-white">

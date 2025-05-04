@@ -3,12 +3,19 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
-const Navigation = () => {
+// This navigation is only used in developer mode, not in the actual funnel
+// It's hidden from the regular user flow since a funnel should be sequential
+const Navigation = ({ developerMode = false }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  // If not in developer mode, don't render the navigation
+  if (!developerMode) {
+    return null;
+  }
 
   return (
     <div className="relative">

@@ -1,9 +1,9 @@
+
 import React from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, Calendar, ArrowRight } from "lucide-react";
-import Navigation from '@/components/Navigation';
 
 const SuccessPage = () => {
   const location = useLocation();
@@ -12,7 +12,6 @@ const SuccessPage = () => {
   
   return (
     <div className="min-h-screen bg-gray-50 py-0">
-      <Navigation />
       <div className="max-w-4xl mx-auto py-12 px-4">
         <div className="text-center mb-8">
           <CheckCircle className="mx-auto h-16 w-16 text-green-500 mb-4" />

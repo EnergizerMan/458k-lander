@@ -9,6 +9,7 @@ import StrategyCall from "./pages/StrategyCall";
 import SuccessPage from "./pages/SuccessPage";
 import WebinarPage from "./pages/WebinarPage";
 import NotFound from "./pages/NotFound";
+import Navigation from "./components/Navigation";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,8 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        {/* Developer Navigation - Only visible during development */}
+        <Navigation developerMode={true} />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/strategy-call" element={<StrategyCall />} />

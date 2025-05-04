@@ -4,14 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileText, Download, ExternalLink, Monitor } from "lucide-react";
-import Navigation from '@/components/Navigation';
 
 const WebinarPage = () => {
   const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-gray-50 py-0 px-4">
-      <Navigation />
       <div className="max-w-4xl mx-auto py-12">
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-navy mb-4">
