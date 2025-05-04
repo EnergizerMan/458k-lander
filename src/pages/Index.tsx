@@ -50,7 +50,7 @@ const Index = () => {
       {/* Video Section */}
       <section className="py-12 px-4 md:px-8 bg-gray-50">
         <div className="max-w-6xl mx-auto">
-          <VideoEmbed videoId="kOkQ4T5WO9E" title="Smooth Operator" />
+          <VideoEmbed videoId="Yh12Udz8lwc" title="$458K In New Pipeline" />
         </div>
       </section>
 
