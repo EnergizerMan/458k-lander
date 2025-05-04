@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -25,7 +24,6 @@ const StrategyCall = () => {
     agreeToTerms: false
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
   
   // Load data from localStorage if available
   useEffect(() => {
@@ -81,8 +79,8 @@ const StrategyCall = () => {
       
       if (error) throw error;
       
-      // Success! Show success modal
-      setShowSuccess(true);
+      // Instead of showing a modal, redirect to the success page
+      navigate('/success', { state: { formData } });
       
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -91,7 +89,6 @@ const StrategyCall = () => {
         description: "Please try again later.",
         variant: "destructive",
       });
-    } finally {
       setIsLoading(false);
     }
   };
@@ -295,33 +292,6 @@ const StrategyCall = () => {
           </form>
         </div>
       </div>
-      
-      {/* Success Dialog */}
-      <Dialog open={showSuccess} onOpenChange={setShowSuccess}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle>Your Strategy Call is Booked!</DialogTitle>
-            <DialogDescription>
-              We're excited to help you grow your pipeline!
-            </DialogDescription>
-          </DialogHeader>
-          
-          <div className="py-6">
-            <p className="text-center mb-4">
-              Check your email for confirmation and calendar invite. Our team will reach out within 1 business day to schedule your call.
-            </p>
-            <p className="text-center text-sm text-gray-600">
-              (For demo purposes, no actual email will be sent)
-            </p>
-          </div>
-          
-          <div className="flex justify-center">
-            <Button onClick={() => navigate('/')} className="bg-navy">
-              Return to Homepage
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };

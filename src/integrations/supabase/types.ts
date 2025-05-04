@@ -972,6 +972,50 @@ export type Database = {
           },
         ]
       }
+      org_power_balances: {
+        Row: {
+          balance: number
+          organization_id: string
+          updated_at: string
+        }
+        Insert: {
+          balance?: number
+          organization_id: string
+          updated_at?: string
+        }
+        Update: {
+          balance?: number
+          organization_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "org_power_balances_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: true
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      organizations: {
+        Row: {
+          created_at: string
+          id: string
+          stripe_customer_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          stripe_customer_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          stripe_customer_id?: string
+        }
+        Relationships: []
+      }
       outbox_messages: {
         Row: {
           ai_generated: boolean | null
@@ -1396,7 +1440,10 @@ export type Database = {
           current_period_end: string | null
           current_period_start: string | null
           id: string
+          maria_power_limit: number | null
+          organization_id: string | null
           plan_id: string
+          plan_tier: string | null
           status: string
           stripe_subscription_id: string | null
           trial_end: string | null
@@ -1411,7 +1458,10 @@ export type Database = {
           current_period_end?: string | null
           current_period_start?: string | null
           id?: string
+          maria_power_limit?: number | null
+          organization_id?: string | null
           plan_id: string
+          plan_tier?: string | null
           status: string
           stripe_subscription_id?: string | null
           trial_end?: string | null
@@ -1426,7 +1476,10 @@ export type Database = {
           current_period_end?: string | null
           current_period_start?: string | null
           id?: string
+          maria_power_limit?: number | null
+          organization_id?: string | null
           plan_id?: string
+          plan_tier?: string | null
           status?: string
           stripe_subscription_id?: string | null
           trial_end?: string | null
@@ -1435,6 +1488,13 @@ export type Database = {
           user_id?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "subscriptions_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "subscriptions_plan_id_fkey"
             columns: ["plan_id"]
@@ -1646,6 +1706,38 @@ export type Database = {
         }
         Relationships: []
       }
+      usage_events: {
+        Row: {
+          id: number
+          organization_id: string | null
+          quantity: number
+          recorded_at: string
+          stripe_subscription_item: string
+        }
+        Insert: {
+          id?: number
+          organization_id?: string | null
+          quantity: number
+          recorded_at?: string
+          stripe_subscription_item: string
+        }
+        Update: {
+          id?: number
+          organization_id?: string | null
+          quantity?: number
+          recorded_at?: string
+          stripe_subscription_item?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "usage_events_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_credits: {
         Row: {
           created_at: string
@@ -1758,6 +1850,7 @@ export type Database = {
           id: string
           job_title: string | null
           location: string | null
+          organization_id: string | null
           stripe_customer_id: string | null
           updated_at: string
           website: string | null
@@ -1773,6 +1866,7 @@ export type Database = {
           id: string
           job_title?: string | null
           location?: string | null
+          organization_id?: string | null
           stripe_customer_id?: string | null
           updated_at?: string
           website?: string | null
@@ -1788,11 +1882,20 @@ export type Database = {
           id?: string
           job_title?: string | null
           location?: string | null
+          organization_id?: string | null
           stripe_customer_id?: string | null
           updated_at?: string
           website?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "user_profiles_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       user_settings: {
         Row: {
@@ -1833,6 +1936,10 @@ export type Database = {
       compute_lifecycle_step: {
         Args: { profile_done: boolean; sub_status: string }
         Returns: Database["public"]["Enums"]["lifecycle_step"]
+      }
+      membership_check: {
+        Args: { org: string }
+        Returns: boolean
       }
       reset_daily_email_count: {
         Args: Record<PropertyKey, never>
