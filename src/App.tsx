@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import StrategyCall from "./pages/StrategyCall";
 import SuccessPage from "./pages/SuccessPage";
 import WebinarPage from "./pages/WebinarPage";
+import EliteAccelerator from "./pages/EliteAccelerator";
 import NotFound from "./pages/NotFound";
 import Navigation from "./components/Navigation";
 
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/strategy-call" element={<StrategyCall />} />
           <Route path="/success" element={<SuccessPage />} />
           <Route path="/webinar" element={<WebinarPage />} />
+          <Route path="/elite-accelerator" element={<EliteAccelerator />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

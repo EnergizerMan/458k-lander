@@ -36,6 +36,7 @@ const Navigation = ({ developerMode = false }) => {
           <Link to="/strategy-call" className="text-navy hover:text-blue-700">Strategy Call</Link>
           <Link to="/success" className="text-navy hover:text-blue-700">Success</Link>
           <Link to="/webinar" className="text-navy hover:text-blue-700">Webinar</Link>
+          <Link to="/elite-accelerator" className="text-navy hover:text-blue-700">Elite Accelerator</Link>
         </div>
       </div>
       
@@ -70,6 +71,13 @@ const Navigation = ({ developerMode = false }) => {
               onClick={() => setIsOpen(false)}
             >
               Webinar
+            </Link>
+            <Link 
+              to="/elite-accelerator" 
+              className="px-4 py-2 hover:bg-gray-100"
+              onClick={() => setIsOpen(false)}
+            >
+              Elite Accelerator
             </Link>
           </div>
         </div>
