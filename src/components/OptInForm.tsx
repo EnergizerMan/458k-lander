@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { MariaLeadInsert } from '@/types/supabase-extensions';
 
 const OptInForm = () => {
   const [firstName, setFirstName] = useState('');
@@ -18,9 +19,15 @@ const OptInForm = () => {
     
     try {
       // Store user data in Supabase maria_leads table
+      const leadData: MariaLeadInsert = {
+        first_name: firstName,
+        email,
+        source: 'playbook_optin'
+      };
+      
       const { error } = await supabase
         .from('maria_leads')
-        .insert({ first_name: firstName, email, source: 'playbook_optin' });
+        .insert(leadData);
       
       if (error) throw error;
       

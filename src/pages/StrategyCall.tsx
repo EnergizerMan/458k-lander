@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -11,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { CalendarPlus, Mail, Link, Phone } from "lucide-react";
+import { MariaLeadUpdate } from '@/types/supabase-extensions';
 
 const StrategyCall = () => {
   const navigate = useNavigate();
@@ -67,15 +67,17 @@ const StrategyCall = () => {
     
     try {
       // Update lead in database with additional info
+      const updateData: MariaLeadUpdate = {
+        phone: formData.phone,
+        website: formData.website,
+        current_revenue: formData.budget,
+        challenge: formData.reason,
+        booked_strategy_call: true
+      };
+      
       const { error } = await supabase
         .from('maria_leads')
-        .update({
-          phone: formData.phone,
-          website: formData.website,
-          current_revenue: formData.budget,
-          challenge: formData.reason,
-          booked_strategy_call: true
-        })
+        .update(updateData)
         .eq('email', formData.email);
       
       if (error) throw error;
