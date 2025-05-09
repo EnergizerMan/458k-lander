@@ -1,4 +1,5 @@
 
+
 // This file contains temporary type extensions for Supabase tables
 // that haven't yet been reflected in the auto-generated types
 
@@ -57,3 +58,4 @@ export type ExtendedDatabase = Database & {
 export type MariaLead = ExtendedDatabase['public']['Tables']['maria_leads']['Row'];
 export type MariaLeadInsert = ExtendedDatabase['public']['Tables']['maria_leads']['Insert'];
 export type MariaLeadUpdate = ExtendedDatabase['public']['Tables']['maria_leads']['Update'];
+
