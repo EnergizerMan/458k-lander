@@ -15,7 +15,7 @@ const EliteAcceleratorCTA = () => {
           </p>
         </div>
         <Link to="/elite-accelerator">
-          <Button className="bg-gradient-to-r from-amber-500 to-purple-500 hover:from-amber-600 hover:to-purple-600 text-white px-6">
+          <Button className="bg-cta hover:bg-blue-600 text-white px-6">
             Apply Now <ArrowRight className="ml-2" />
           </Button>
         </Link>
