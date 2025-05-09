@@ -9,48 +9,7 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      maria_leads: {
-        Row: {
-          booked_strategy_call: boolean | null
-          challenge: string | null
-          created_at: string
-          current_revenue: string | null
-          email: string
-          first_name: string
-          id: string
-          phone: string | null
-          source: string | null
-          updated_at: string
-          website: string | null
-        }
-        Insert: {
-          booked_strategy_call?: boolean | null
-          challenge?: string | null
-          created_at?: string
-          current_revenue?: string | null
-          email: string
-          first_name: string
-          id?: string
-          phone?: string | null
-          source?: string | null
-          updated_at?: string
-          website?: string | null
-        }
-        Update: {
-          booked_strategy_call?: boolean | null
-          challenge?: string | null
-          created_at?: string
-          current_revenue?: string | null
-          email?: string
-          first_name?: string
-          id?: string
-          phone?: string | null
-          source?: string | null
-          updated_at?: string
-          website?: string | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Views: {
       [_ in never]: never
@@ -59,12 +18,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      lifecycle_step:
-        | "NEW"
-        | "EMAIL_VERIFIED"
-        | "PROFILE"
-        | "PAYMENT"
-        | "ACTIVE"
+      [_ in never]: never
     }
     CompositeTypes: {
       [_ in never]: never
@@ -179,8 +133,6 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {
-      lifecycle_step: ["NEW", "EMAIL_VERIFIED", "PROFILE", "PAYMENT", "ACTIVE"],
-    },
+    Enums: {},
   },
 } as const
