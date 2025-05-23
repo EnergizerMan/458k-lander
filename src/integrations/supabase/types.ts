@@ -9,6 +9,229 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      customer_details: {
+        Row: {
+          biggest_challenge: string | null
+          created_at: string
+          email: string | null
+          id: string
+          industry: string | null
+          marketing_channels: string | null
+          marketing_goals: string | null
+          onboarding_completed: boolean
+          payment_completed: boolean
+          selected_plan: string | null
+          stripe_customer_id: string | null
+          target_audience: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          biggest_challenge?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          industry?: string | null
+          marketing_channels?: string | null
+          marketing_goals?: string | null
+          onboarding_completed?: boolean
+          payment_completed?: boolean
+          selected_plan?: string | null
+          stripe_customer_id?: string | null
+          target_audience?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          biggest_challenge?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          industry?: string | null
+          marketing_channels?: string | null
+          marketing_goals?: string | null
+          onboarding_completed?: boolean
+          payment_completed?: boolean
+          selected_plan?: string | null
+          stripe_customer_id?: string | null
+          target_audience?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      customer_leads: {
+        Row: {
+          company: string | null
+          created_at: string
+          email: string
+          id: string
+          last_activity: string | null
+          name: string
+          role: string | null
+          source: string | null
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          last_activity?: string | null
+          name: string
+          role?: string | null
+          source?: string | null
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          company?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          last_activity?: string | null
+          name?: string
+          role?: string | null
+          source?: string | null
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      customer_targets: {
+        Row: {
+          company: string | null
+          created_at: string
+          email: string | null
+          id: string
+          intent_score: number | null
+          match_score: number | null
+          name: string
+          phone: string | null
+          role: string | null
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          intent_score?: number | null
+          match_score?: number | null
+          name: string
+          phone?: string | null
+          role?: string | null
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          company?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          intent_score?: number | null
+          match_score?: number | null
+          name?: string
+          phone?: string | null
+          role?: string | null
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      inbox_messages: {
+        Row: {
+          content: string
+          created_at: string
+          from_email: string
+          from_name: string | null
+          id: string
+          lead_id: string | null
+          read_status: string
+          received_time: string
+          sentiment: string | null
+          subject: string
+          user_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          from_email: string
+          from_name?: string | null
+          id?: string
+          lead_id?: string | null
+          read_status?: string
+          received_time?: string
+          sentiment?: string | null
+          subject: string
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          from_email?: string
+          from_name?: string | null
+          id?: string
+          lead_id?: string | null
+          read_status?: string
+          received_time?: string
+          sentiment?: string | null
+          subject?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "inbox_messages_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "customer_leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lead_activities: {
+        Row: {
+          activity_date: string
+          created_at: string
+          description: string | null
+          id: string
+          lead_id: string
+          type: string
+        }
+        Insert: {
+          activity_date?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          lead_id: string
+          type: string
+        }
+        Update: {
+          activity_date?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          lead_id?: string
+          type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_activities_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "customer_leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       maria_leads: {
         Row: {
           booked_strategy_call: boolean | null
@@ -48,6 +271,235 @@ export type Database = {
           source?: string | null
           updated_at?: string
           website?: string | null
+        }
+        Relationships: []
+      }
+      outbox_messages: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          lead_id: string | null
+          quality: string | null
+          scheduled_time: string | null
+          sent_time: string | null
+          sequence_id: string | null
+          sequence_step_id: string | null
+          status: string
+          subject: string
+          target_id: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          lead_id?: string | null
+          quality?: string | null
+          scheduled_time?: string | null
+          sent_time?: string | null
+          sequence_id?: string | null
+          sequence_step_id?: string | null
+          status?: string
+          subject: string
+          target_id?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          lead_id?: string | null
+          quality?: string | null
+          scheduled_time?: string | null
+          sent_time?: string | null
+          sequence_id?: string | null
+          sequence_step_id?: string | null
+          status?: string
+          subject?: string
+          target_id?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "outbox_messages_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "customer_leads"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "outbox_messages_sequence_id_fkey"
+            columns: ["sequence_id"]
+            isOneToOne: false
+            referencedRelation: "sequences"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "outbox_messages_sequence_step_id_fkey"
+            columns: ["sequence_step_id"]
+            isOneToOne: false
+            referencedRelation: "sequence_steps"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "outbox_messages_target_id_fkey"
+            columns: ["target_id"]
+            isOneToOne: false
+            referencedRelation: "customer_targets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          first_name: string | null
+          id: string
+          last_name: string | null
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          first_name?: string | null
+          id: string
+          last_name?: string | null
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          first_name?: string | null
+          id?: string
+          last_name?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      sequence_enrollments: {
+        Row: {
+          created_at: string
+          current_step: number | null
+          id: string
+          sequence_id: string
+          status: string
+          target_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          current_step?: number | null
+          id?: string
+          sequence_id: string
+          status?: string
+          target_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          current_step?: number | null
+          id?: string
+          sequence_id?: string
+          status?: string
+          target_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sequence_enrollments_sequence_id_fkey"
+            columns: ["sequence_id"]
+            isOneToOne: false
+            referencedRelation: "sequences"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "sequence_enrollments_target_id_fkey"
+            columns: ["target_id"]
+            isOneToOne: false
+            referencedRelation: "customer_targets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      sequence_steps: {
+        Row: {
+          content: string | null
+          created_at: string
+          delay_days: number | null
+          id: string
+          sequence_id: string
+          step_order: number
+          step_type: string
+          subject: string | null
+          updated_at: string
+        }
+        Insert: {
+          content?: string | null
+          created_at?: string
+          delay_days?: number | null
+          id?: string
+          sequence_id: string
+          step_order: number
+          step_type: string
+          subject?: string | null
+          updated_at?: string
+        }
+        Update: {
+          content?: string | null
+          created_at?: string
+          delay_days?: number | null
+          id?: string
+          sequence_id?: string
+          step_order?: number
+          step_type?: string
+          subject?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sequence_steps_sequence_id_fkey"
+            columns: ["sequence_id"]
+            isOneToOne: false
+            referencedRelation: "sequences"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      sequences: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          status: string
+          steps_count: number | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          status?: string
+          steps_count?: number | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          status?: string
+          steps_count?: number | null
+          updated_at?: string
+          user_id?: string
         }
         Relationships: []
       }

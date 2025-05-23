@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -82,8 +83,8 @@ const StrategyCall = () => {
       
       if (error) throw error;
       
-      // Instead of showing a modal, redirect to the success page
-      navigate('/success', { state: { formData } });
+      // Redirect to external website
+      window.location.href = 'https://mariagtm.com';
       
     } catch (error) {
       console.error('Error submitting form:', error);
