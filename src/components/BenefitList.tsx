@@ -12,7 +12,7 @@ const benefits = [
   },
   {
     id: 3,
-    text: "The 5-proposal framework we used to turn leads into deals in 30 days"
+    text: "The 5-stage sales flow we used to close deals fast"
   },
   {
     id: 4,
