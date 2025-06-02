@@ -46,7 +46,7 @@ const StrategyCall = () => {
           {/* Calendly inline widget */}
           <div 
             className="calendly-inline-widget" 
-            data-url="https://calendly.com/jacob-gtm/maria-ai-strategy-session" 
+            data-url="https://calendly.com/jacob-gtm/maria-gtm-session" 
             style={{ minWidth: '320px', height: '700px' }}
           ></div>
         </div>
