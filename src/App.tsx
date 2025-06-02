@@ -20,8 +20,8 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        {/* Developer Navigation - Only visible during development */}
-        <Navigation developerMode={true} />
+        {/* Developer Navigation - Hidden for production */}
+        <Navigation developerMode={false} />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/strategy-call" element={<StrategyCall />} />
